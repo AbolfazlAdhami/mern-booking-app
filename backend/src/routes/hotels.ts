@@ -11,6 +11,33 @@ const stripe = new Stripe(process.env.STRIPE_API_KEY as string);
 
 const router = express.Router();
 
+router.get("/", async (req: Request, res: Response) => {
+  try {
+    const hotels = await Hotel.find().sort("-lastUpdated");
+    return res.json({ data: hotels });
+  } catch (error) {
+    console.log("errors", error);
+    return res.status(500).json({ message: "Somethings went wrong!" });
+  }
+});
+
+router.get("/:id", [param("id").notEmpty().withMessage("Hotel ID is Required")], async (req: Request, res: Response) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) return res.status(400).json({ errors: errors.array() });
+
+  const id = req.params.id.toString();
+  try {
+    const hotel = await Hotel.findById(id);
+    return res.json(hotel);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: "Somethings went wrong!" });
+  }
+});
+
+
+
+
 router.get("/search", async (req: Request, res: Response) => {
   try {
     const query = constructSearchQuery(req.query);
@@ -50,29 +77,6 @@ router.get("/search", async (req: Request, res: Response) => {
   }
 });
 
-router.get("/", async (req: Request, res: Response) => {
-  try {
-    const hotels = await Hotel.find().sort("-lastUpdated");
-    return res.json({ data: hotels });
-  } catch (error) {
-    console.log("errors", error);
-    return res.status(500).json({ message: "Somethings went wrong!" });
-  }
-});
-
-router.get("/:id", [param("id").notEmpty().withMessage("Hotel ID is Required")], async (req: Request, res: Response) => {
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) return res.status(400).json({ errors: errors.array() });
-
-  const id = req.params.id.toString();
-  try {
-    const hotel = await Hotel.findById(id);
-    return res.json(hotel);
-  } catch (error) {
-    console.log(error);
-    return res.status(500).json({ message: "Somethings went wrong!" });
-  }
-});
 
 router.post("/:hotelId/bookings/payment-intent", verifyToken, async (req: Request, res: Response) => {});
 
