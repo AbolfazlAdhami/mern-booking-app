@@ -5,7 +5,6 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import verifyToken from "../middleware/auth";
 import { loginValidation } from "../shared/validation";
-import { userInfo } from "os";
 
 const router = express.Router();
 
