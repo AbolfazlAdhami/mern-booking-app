@@ -1,7 +1,7 @@
 import express, { Request, Response } from "express";
 import User from "../models/user";
 import jwt from "jsonwebtoken";
-import { check, validationResult } from "express-validator";
+import { validationResult } from "express-validator";
 import verifyToken from "../middleware/auth";
 import { registerValidation } from "../shared/validation";
 
@@ -49,6 +49,5 @@ router.post("/register", registerValidation, async (req: Request, res: Response)
     return res.status(500).json({ message: "Something went Wrong! try later." });
   }
 });
-
 
 export default router;

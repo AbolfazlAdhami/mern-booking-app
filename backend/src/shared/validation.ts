@@ -7,4 +7,11 @@ const registerValidation = [
   check("password", "Password with 6 or more characters required").isLength({ min: 8 }),
 ];
 
-export { registerValidation };
+const loginValidation = [
+  check("email", "Email is required").isEmail(),
+  check("password", "Password with 6 or more characters required").isLength({
+    min: 6,
+  }),
+];
+
+export { registerValidation, loginValidation };
