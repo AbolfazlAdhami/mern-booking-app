@@ -61,3 +61,7 @@ router.get("/:id", async (req: Request, res: Response) => {});
 router.post("/:hotelId/bookings/payment-intent", verifyToken, async (req: Request, res: Response) => {});
 
 router.post("/:hotelId/bookings", async (req: Request, res: Response) => {});
+
+
+
+export default router;

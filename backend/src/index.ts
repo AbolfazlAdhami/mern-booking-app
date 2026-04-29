@@ -6,6 +6,11 @@ import path from "path";
 import { v2 as cloudinary } from "cloudinary";
 import mongoose from "mongoose";
 
+import userRoutes from "./routes/users";
+import authRoutes from "./routes/auth";
+import hotelsRoutes from "./routes/hotels";
+import myHotelsRoutes from "./routes/my-hotels";
+import bookingRoutes from "./routes/my-booking";
 
 const PORT = process.env.PORT || 8000;
 cloudinary.config({
@@ -28,8 +33,12 @@ app.use(
 
 app.use(express.static(path.join(__dirname, "../../frontend/dist")));
 
+app.use("/api/auth", authRoutes);
+app.use("/api/users", userRoutes);
+app.use("/api/hotels", hotelsRoutes);
+app.use("/api/my-hotels", myHotelsRoutes);
+app.use("/api/my-booking", bookingRoutes);
+
 app.listen(PORT, () => {
   console.log(`✅ Server is running on http://localhost:${PORT}`);
 });
-
-
