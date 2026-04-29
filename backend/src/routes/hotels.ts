@@ -4,6 +4,10 @@ import { BookingType, HotelSearchResponse } from "../shared/types";
 import { param, validationResult } from "express-validator";
 import verifyToken from "../middleware/auth";
 import { constructSearchQuery } from "../shared/utils";
+import Stripe from "stripe";
+
+const stripe = new Stripe(process.env.STRIPE_API_KEY as string);
+
 
 const router = express.Router();
 
@@ -56,7 +60,19 @@ router.get("/", async (req: Request, res: Response) => {
   }
 });
 
-router.get("/:id", async (req: Request, res: Response) => {});
+router.get("/:id", [param("id").notEmpty().withMessage("Hotel ID is Required")], async (req: Request, res: Response) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) return res.status(400).json({ errors: errors.array() });
+
+  const id = req.params.id.toString();
+  try {
+    const hotel = await Hotel.findById(id);
+    return res.json(hotel);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: "Somethings went wrong!" });
+  }
+});
 
 router.post("/:hotelId/bookings/payment-intent", verifyToken, async (req: Request, res: Response) => {});
 
