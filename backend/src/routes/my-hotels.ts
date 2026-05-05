@@ -84,3 +84,6 @@ router.put("/:hotelId", verifyToken, upload.array("imageFiles"), async (req: Req
 });
 
 export default router;
+
+
+//  TODO: This route done but Check Test
