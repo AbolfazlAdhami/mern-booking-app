@@ -8,7 +8,6 @@ import Stripe from "stripe";
 
 const stripe = new Stripe(process.env.STRIPE_API_KEY as string);
 
-
 const router = express.Router();
 
 router.get("/", async (req: Request, res: Response) => {
@@ -34,9 +33,6 @@ router.get("/:id", [param("id").notEmpty().withMessage("Hotel ID is Required")],
     return res.status(500).json({ message: "Somethings went wrong!" });
   }
 });
-
-
-
 
 router.get("/search", async (req: Request, res: Response) => {
   try {
@@ -77,11 +73,8 @@ router.get("/search", async (req: Request, res: Response) => {
   }
 });
 
+router.post("/:hotelId/bookings", verifyToken, async (req: Request, res: Response) => {});
 
 router.post("/:hotelId/bookings/payment-intent", verifyToken, async (req: Request, res: Response) => {});
-
-router.post("/:hotelId/bookings", async (req: Request, res: Response) => {});
-
-
 
 export default router;
