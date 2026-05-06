@@ -37,7 +37,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/hotels", hotelsRoutes);
 app.use("/api/my-hotels", myHotelsRoutes);
-app.use("/api/my-booking", bookingRoutes);
+app.use("/api/my-bookings", bookingRoutes);
 
 app.listen(PORT, () => {
   console.log(`✅ Server is running on http://localhost:${PORT}`);
