@@ -3,8 +3,8 @@ import { createRoot } from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
 import { QueryClient, QueryClientProvider } from "react-query";
-import { AppContextProvider as AppContextProviderRaw } from "./context/AppContext.tsx";
-import { SearchContextProvider } from "./context/SearchContext.tsx";
+import { AppContextProvider as AppContextProviderRaw } from "./contexts/AppContext.tsx";
+import { SearchContextProvider } from "./contexts/SearchContext.tsx";
 
 const queryClient = new QueryClient({
   defaultOptions: {
