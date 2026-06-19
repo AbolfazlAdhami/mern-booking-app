@@ -1,5 +1,22 @@
+import Layout from "layouts/Layout";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Home from "./pages/Home";
+
 function App() {
-  return <div className="text-4xl">WellCome</div>;
+  return (
+    <Router>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Layout>
+              <Home />
+            </Layout>
+          }
+        />
+      </Routes>
+    </Router>
+  );
 }
 
 export default App;

@@ -1,10 +1,10 @@
-import { StrictMode } from "react";
+import React from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
 import { QueryClient, QueryClientProvider } from "react-query";
-// import { AppContextProvider } from "./contexts/AppContext.tsx";
-// import { SearchContextProvider } from "./contexts/SearchContext.tsx";
+import { AppContextProvider as AppContextProviderRaw } from "./context/AppContext.tsx";
+import { SearchContextProvider } from "./context/SearchContext.tsx";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -12,10 +12,16 @@ const queryClient = new QueryClient({
   },
 });
 
+const AppContextProvider = AppContextProviderRaw as React.ComponentType<{
+  children: React.ReactNode;
+}>;
+
 createRoot(document.getElementById("root")!).render(
-  <StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <App />
-    </QueryClientProvider>
-  </StrictMode>,
+  <React.StrictMode>
+    <AppContextProvider>
+      <SearchContextProvider>
+        <App />
+      </SearchContextProvider>
+    </AppContextProvider>
+  </React.StrictMode>,
 );
