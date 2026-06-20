@@ -34,7 +34,7 @@ export const AppContextProvider = ({ children }: { children: React.ReactNode }) 
         showToast: (toastMessage) => {
           setToast(toastMessage);
         },
-        isLoggedIn: !false,
+        isLoggedIn: false,
         stripePromise: null,
       }}
     >
