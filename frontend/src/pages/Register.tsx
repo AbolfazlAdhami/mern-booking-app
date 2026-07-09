@@ -36,9 +36,9 @@ const Register = () => {
   });
 
   return (
-    <main className="max-w-screen  bg-blue-600 h-screen flex justify-center items-center">
+    <main className="max-w-screen bg-[url('/register.jpg')] bg-cover bg-bottom bg-no-repeat relative   h-screen flex justify-center items-center">
       <form onSubmit={onSubmit} className={RegisterPageStyle.registerForm}>
-        <h2 className="text-3xl font-bold">Create an Account</h2>
+        <h2 className="text-3xl text-white font-bold">Create an Account</h2>
         <div className="flex flex-col md:flex-row gap-2.5 md:gap-5">
           <label className={RegisterPageStyle.labelStyle}>
             First Name
