@@ -77,7 +77,9 @@ const Register = () => {
           />
           {errors.confirmPassword && <span className="text-red-500">{errors.confirmPassword.message}</span>}
         </label>
-        <button className={RegisterPageStyle.buttonStyle}>Create Account</button>
+        <button type="submit" className={RegisterPageStyle.buttonStyle}>
+          Create Account
+        </button>
       </form>
     </main>
   );
