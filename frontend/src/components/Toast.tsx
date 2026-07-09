@@ -1,5 +1,6 @@
 import { cn } from "@/utils";
 import { useEffect, useState } from "react";
+import { CircleCheckBig, X } from "lucide-react";
 
 type ToastProps = {
   message: string;
@@ -18,7 +19,6 @@ const Toast = ({ message, type, onClose }: ToastProps) => {
       setVisible(true);
     });
 
-    // Auto close
     const timer = setTimeout(() => {
       handleClose();
     }, 5000);
@@ -37,16 +37,15 @@ const Toast = ({ message, type, onClose }: ToastProps) => {
     }, ANIMATION_DURATION);
   };
 
-  const styles = type === "SUCCESS" ? "text-green-900 border-green-700" : "text-red-500 border-red-700";
+  const styles = type === "SUCCESS" ? "border-green-700 bg-green-400" : "border-red-700 bg-red-400";
 
   return (
     <div
       onClick={handleClose}
-      className={cn("fixed top-5 right-5 z-50 cursor-pointer rounded-lg border px-5 py-4 shadow-xl select-none bg-black", styles, visible ? "translate-x-0 opacity-100" : "translate-x-full opacity-0")}
+      className={cn("fixed top-5 right-5 z-50 cursor-pointer rounded-lg border px-5 py-4 shadow-xl select-none text-white", styles, visible ? "translate-x-0 opacity-100" : "translate-x-full opacity-0")}
     >
       <div className="flex items-center gap-3">
-        <span className="text-lg">{type === "SUCCESS" ? "✅" : "❌"}</span>
-
+        <span className="text-lg">{type === "SUCCESS" ? <CircleCheckBig /> : <X />}</span>
         <p className="font-medium">{message}</p>
       </div>
     </div>
