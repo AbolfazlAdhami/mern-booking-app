@@ -48,19 +48,6 @@ export const updateMyHotelById = async (hotelFormData: FormData) => {
   return data;
 };
 
-export type SearchParams = {
-  destination?: string;
-  checkIn?: string;
-  checkOut?: string;
-  adultCount?: string;
-  childCount?: string;
-  page?: string;
-  facilities?: string[];
-  types?: string[];
-  stars?: string[];
-  maxPrice?: string;
-  sortOption?: string;
-};
 
 export const searchHotels = async (searchParams: SearchParams): Promise<HotelSearchResponse> => {
   const { data } = await axiosInstance.get("/api/hotels/search", {
