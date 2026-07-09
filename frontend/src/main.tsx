@@ -18,10 +18,12 @@ const AppContextProvider = AppContextProviderRaw as React.ComponentType<{
 
 createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <AppContextProvider>
-      <SearchContextProvider>
-        <App />
-      </SearchContextProvider>
-    </AppContextProvider>
+    <QueryClientProvider client={queryClient}>
+      <AppContextProvider>
+        <SearchContextProvider>
+          <App />
+        </SearchContextProvider>
+      </AppContextProvider>
+    </QueryClientProvider>
   </React.StrictMode>,
 );

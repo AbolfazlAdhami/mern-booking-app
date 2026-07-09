@@ -1,3 +1,11 @@
+export type UserType = {
+  _id: string;
+  email: string;
+  password: string;
+  firstName: string;
+  lastName: string;
+};
+
 export type HotelType = {
   _id: string;
   userId: string;
@@ -27,4 +35,32 @@ export type BookingType = {
   checkIn: Date;
   checkOut: Date;
   totalCount: number;
+};
+
+export type HotelSearchResponse = {
+  data: HotelType[];
+  pagination: {
+    total: number;
+    page: number;
+    pages: number;
+  };
+};
+
+export type PaymentIntentResponse = {
+  paymentIntentId: string;
+  clientSecret: string;
+  totalCost: number;
+};
+
+export type RegisterFormData = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+};
+
+export type SignInFormData = {
+  email: string;
+  password: string;
 };
