@@ -1,14 +1,12 @@
 import { useAppContext } from "@/contexts/AppContext";
 import { Link } from "react-router-dom";
 import SignOutButton from "./SignOutButton";
+import { HeaderStyle } from "@/constants/styles";
 
 const Header = () => {
   const { isLoggedIn } = useAppContext();
 
-  const HeaderStyle = {
-    navLink: "flex items-center text-white px-3 font-bold hover:bg-blue-600 transition-all ease-in rounded-lg",
-    singInButton: "flex bg-white items-center text-blue-600 px-3 font-bold hover:bg-gray-100 p-2 transition-all ease-in rounded-lg",
-  };
+
 
   return (
     <div className="bg-orange-400 text-white py-6">

@@ -1,3 +1,4 @@
+import { cn } from "@/utils";
 import { useEffect, useState } from "react";
 
 type ToastProps = {
@@ -41,21 +42,7 @@ const Toast = ({ message, type, onClose }: ToastProps) => {
   return (
     <div
       onClick={handleClose}
-      className={`
-        fixed top-5 right-5 z-50
-        cursor-pointer
-        rounded-lg
-        border
-        px-5 py-4
-        shadow-xl
-        transition-all
-        duration-300
-        ease-in-out
-        select-none
-        bg-black
-        ${styles}
-        ${visible ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"}
-      `}
+      className={cn("fixed top-5 right-5 z-50 cursor-pointer rounded-lg border px-5 py-4 shadow-xl select-none bg-black", styles, visible ? "translate-x-0 opacity-100" : "translate-x-full opacity-0")}
     >
       <div className="flex items-center gap-3">
         <span className="text-lg">{type === "SUCCESS" ? "✅" : "❌"}</span>
