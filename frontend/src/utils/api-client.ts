@@ -1,4 +1,4 @@
-import type { RegisterFormData, SignInFormData , UserType, HotelType, HotelSearchResponse, PaymentIntentResponse } from "@/types/index";
+import type { RegisterFormData, SignInFormData, UserType, HotelType, HotelSearchResponse, PaymentIntentResponse, SearchParams } from "@/types/index";
 import { axiosInstance } from "./axiosInstance";
 
 export const fetchCurrentUser = async (): Promise<UserType> => {
@@ -48,7 +48,6 @@ export const updateMyHotelById = async (hotelFormData: FormData) => {
   return data;
 };
 
-
 export const searchHotels = async (searchParams: SearchParams): Promise<HotelSearchResponse> => {
   const { data } = await axiosInstance.get("/api/hotels/search", {
     params: {
@@ -64,7 +63,6 @@ export const searchHotels = async (searchParams: SearchParams): Promise<HotelSea
       types: searchParams.types,
       stars: searchParams.stars,
     },
-    // axios repeats array params as facilities=a&facilities=b, matching URLSearchParams behavior
   });
   return data;
 };
@@ -84,6 +82,7 @@ export const createPaymentIntent = async (hotelId: string, numberOfNights: strin
   return data;
 };
 
+// TODO: complete booking form and api
 // export const createRoomBooking = async (formData: BookingFormData) => {
 //   await axiosInstance.post(`/api/hotels/${formData.hotelId}/bookings`, formData);
 // };
