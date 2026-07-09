@@ -4,11 +4,13 @@ import App from "./App.tsx";
 import "./index.css";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { AppContextProvider as AppContextProviderRaw } from "./contexts/AppContext.tsx";
-import { SearchContextProvider } from "./contexts/SearchContext.tsx";
+import { SearchContextProvider } from "@/contexts/SearchContext.tsx";
 
 const queryClient = new QueryClient({
   defaultOptions: {
-    queries: { retry: 0 },
+    queries: {
+      retry: 1,
+    },
   },
 });
 
