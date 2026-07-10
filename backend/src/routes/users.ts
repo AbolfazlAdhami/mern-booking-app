@@ -21,7 +21,7 @@ router.get("/me", verifyToken, async (req, res) => {
 
 router.post("/register", registerValidation, async (req: Request, res: Response) => {
   const errors = validationResult(req);
-
+  console.log(req, "dawdadawd");
   if (!errors.isEmpty()) {
     return res.status(400).json({ message: errors.array() });
   }
