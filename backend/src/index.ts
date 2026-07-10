@@ -13,7 +13,6 @@ import myHotelsRoutes from "./routes/my-hotels";
 import bookingRoutes from "./routes/my-booking";
 import morgan from "morgan";
 
-
 const PORT = process.env.PORT || 8000;
 // cloudinary.config({
 //   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -33,7 +32,6 @@ app.use(
     credentials: true,
   }),
 );
-
 app.use(express.static(path.join(__dirname, "../../frontend/dist")));
 
 app.use("/api/auth", authRoutes);
