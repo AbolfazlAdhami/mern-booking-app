@@ -39,13 +39,13 @@ router.post("/login", loginValidation, async (req: Request, res: Response) => {
 
     return res.status(200).json({ userId: user._id });
   } catch (error) {
-    console.log(error);
+    console.error(error);
     return res.status(500).json({ message: "Something is wrong!" });
   }
 });
 
 router.get("/validate-token", verifyToken, async (req: Request, res: Response) => {
-  console.log(req);
+  console.error(req);
   res.status(200).send({ userId: req.userId });
 });
 

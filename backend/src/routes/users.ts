@@ -14,14 +14,13 @@ router.get("/me", verifyToken, async (req, res) => {
     if (!user) return res.status(400).json({ message: "User not found" });
     return res.json(user);
   } catch (error) {
-    console.log(error);
+    console.error(error);
     return res.status(500).json({ message: "Something went Wrong! try later." });
   }
 });
 
 router.post("/register", registerValidation, async (req: Request, res: Response) => {
   const errors = validationResult(req);
-  console.log(req, "dawdadawd");
   if (!errors.isEmpty()) {
     return res.status(400).json({ message: errors.array() });
   }
@@ -45,7 +44,7 @@ router.post("/register", registerValidation, async (req: Request, res: Response)
     });
     return res.status(200).json({ message: "User registered Successfully" });
   } catch (error) {
-    console.log(error);
+    console.error(error);
     return res.status(500).json({ message: "Something went Wrong! try later." });
   }
 });

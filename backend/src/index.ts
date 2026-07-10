@@ -20,7 +20,7 @@ const PORT = process.env.PORT || 8000;
 //   api_key: process.env.CLOUDINARY_API_KEY,
 //   api_secret: process.env.CLOUDINARY_API_SECRET,
 // });
-console.log(process.env.MONGODB_CONNECTION_STRING);
+
 mongoose.connect(process.env.MONGODB_CONNECTION_STRING as string);
 
 const app = express();
