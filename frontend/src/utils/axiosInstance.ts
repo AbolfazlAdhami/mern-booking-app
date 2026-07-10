@@ -33,7 +33,6 @@ axiosInstance.interceptors.response.use(
   (response) => response,
   (error) => {
     const data = error.response?.data?.message;
-    console.log(data);
     let message = "Somthing is wrong";
 
     if (typeof data == "string") {
@@ -43,7 +42,6 @@ axiosInstance.interceptors.response.use(
     } else if (error.message) {
       message = error.message;
     }
-    console.log(data, "the end");
 
     const normalizedError = new Error(message);
     (normalizedError as any).status = error.response?.status;
