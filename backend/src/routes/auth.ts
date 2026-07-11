@@ -37,14 +37,17 @@ router.post("/login", loginValidation, async (req: Request, res: Response) => {
       maxAge: 86400000,
     });
 
-    return res.status(200).json({ userId:user._id });
+    return res.status(200).json({ userId: user._id });
   } catch (error) {
-    console.log(error);
+    console.error(error);
     return res.status(500).json({ message: "Something is wrong!" });
   }
 });
 
-router.get("/validate-token", verifyToken, async (req: Request, res: Response) => res.status(200).send({ userId: req.userId }));
+router.get("/validate-token", verifyToken, async (req: Request, res: Response) => {
+  console.error(req);
+  res.status(200).send({ userId: req.userId });
+});
 
 router.post("/logout", verifyToken, (req: Request, res: Response) => {
   res.cookie("auth_token", "", { expires: new Date(0) });

@@ -1,8 +1,13 @@
 import Layout from "layouts/Layout";
 import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
+import { useAppContext } from "@/contexts/AppContext";
+
+
 import Home from "pages/Home";
 import Register from "pages/Register";
-import { useAppContext } from "./contexts/AppContext";
+import SignIn from "pages/SignIn";
+
+
 
 function App() {
   const { isLoggedIn } = useAppContext();
@@ -18,6 +23,7 @@ function App() {
           }
         />
         <Route path="/register" element={<Register />} />
+        <Route path="/sign-in" element={<SignIn />} />
         {isLoggedIn && <></>}
         <Route path="*" element={<Navigate to={"/"} />} />
       </Routes>

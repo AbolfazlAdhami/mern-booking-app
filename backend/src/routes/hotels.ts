@@ -15,7 +15,7 @@ router.get("/", async (req: Request, res: Response) => {
     const hotels = await Hotel.find().sort("-lastUpdated");
     return res.json({ data: hotels });
   } catch (error) {
-    console.log("errors", error);
+    console.error("errors", error);
     return res.status(500).json({ message: "Somethings went wrong!" });
   }
 });
@@ -29,7 +29,7 @@ router.get("/:id", [param("id").notEmpty().withMessage("Hotel ID is Required")],
     const hotel = await Hotel.findById(id);
     return res.json(hotel);
   } catch (error) {
-    console.log(error);
+    console.error(error);
     return res.status(500).json({ message: "Somethings went wrong!" });
   }
 });
@@ -68,7 +68,7 @@ router.get("/search", async (req: Request, res: Response) => {
     };
     return res.json(response);
   } catch (error) {
-    console.log("errors", error);
+    console.error("errors", error);
     return res.status(500).json({ message: "Somethings went wrong!" });
   }
 });

@@ -11,6 +11,7 @@ import authRoutes from "./routes/auth";
 import hotelsRoutes from "./routes/hotels";
 import myHotelsRoutes from "./routes/my-hotels";
 import bookingRoutes from "./routes/my-booking";
+import morgan from "morgan";
 
 const PORT = process.env.PORT || 8000;
 // cloudinary.config({
@@ -18,10 +19,11 @@ const PORT = process.env.PORT || 8000;
 //   api_key: process.env.CLOUDINARY_API_KEY,
 //   api_secret: process.env.CLOUDINARY_API_SECRET,
 // });
-console.log(process.env.MONGODB_CONNECTION_STRING);
+
 mongoose.connect(process.env.MONGODB_CONNECTION_STRING as string);
 
 const app = express();
+app.use(morgan("dev"));
 app.use(express.json());
 app.use(cookieParser());
 app.use(
@@ -30,7 +32,6 @@ app.use(
     credentials: true,
   }),
 );
-
 app.use(express.static(path.join(__dirname, "../../frontend/dist")));
 
 app.use("/api/auth", authRoutes);

@@ -4,11 +4,13 @@ import App from "./App.tsx";
 import "./index.css";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { AppContextProvider as AppContextProviderRaw } from "./contexts/AppContext.tsx";
-import { SearchContextProvider } from "./contexts/SearchContext.tsx";
+import { SearchContextProvider } from "@/contexts/SearchContext.tsx";
 
 const queryClient = new QueryClient({
   defaultOptions: {
-    queries: { retry: 0 },
+    queries: {
+      retry: 1,
+    },
   },
 });
 
@@ -18,10 +20,12 @@ const AppContextProvider = AppContextProviderRaw as React.ComponentType<{
 
 createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <AppContextProvider>
-      <SearchContextProvider>
-        <App />
-      </SearchContextProvider>
-    </AppContextProvider>
+    <QueryClientProvider client={queryClient}>
+      <AppContextProvider>
+        <SearchContextProvider>
+          <App />
+        </SearchContextProvider>
+      </AppContextProvider>
+    </QueryClientProvider>
   </React.StrictMode>,
 );

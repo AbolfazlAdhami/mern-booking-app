@@ -23,7 +23,7 @@ router.post("/", verifyToken, createHotelValidation, upload.array("imageFiles", 
 
     return res.status(201).send(newHotel);
   } catch (error) {
-    console.log(error);
+    console.error(error);
     return res.status(500).json({ message: "Something went wrong" });
   }
 });
@@ -78,7 +78,7 @@ router.put("/:hotelId", verifyToken, upload.array("imageFiles"), async (req: Req
     await hotel.save();
     return res.status(201).json(hotel);
   } catch (error) {
-    console.log(error);
+    console.error(error);
     return res.status(500).json({ message: "Something went wrong" });
   }
 });
