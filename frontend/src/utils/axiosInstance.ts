@@ -15,20 +15,6 @@ axiosInstance.interceptors.request.use(
   (error) => Promise.reject(error),
 );
 
-// axiosInstance.interceptors.response.use(
-//   (response) => response,
-//   async (error) => {
-//     console.log(error);
-//     const message = error.response?.data?.message || error.response?.data?.errors || error.message;
-//     new Error(message);
-//     const normalizedError = new Error(message);
-
-//     (normalizedError as any).status = error.response?.status;
-
-//     return Promise.reject(normalizedError);
-//   },
-// );
-
 axiosInstance.interceptors.response.use(
   (response) => response,
   (error) => {
