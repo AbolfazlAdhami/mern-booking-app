@@ -67,7 +67,7 @@ export const searchHotels = async (searchParams: SearchParams): Promise<HotelSea
   return data;
 };
 
-export const fetchHotels = async (): Promise<HotelType[]> => {
+export const fetchHotels = async (): Promise<{ data: HotelType[]; metadata: unknown }> => {
   const { data } = await axiosInstance.get("/api/hotels");
   return data;
 };

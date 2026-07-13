@@ -13,7 +13,7 @@ const router = express.Router();
 router.get("/", async (req: Request, res: Response) => {
   try {
     const hotels = await Hotel.find().sort("-lastUpdated");
-    return res.json({ data: hotels });
+    return res.json({ data: hotels, metadata: { total: hotels.length } });
   } catch (error) {
     console.error("errors", error);
     return res.status(500).json({ message: "Somethings went wrong!" });
