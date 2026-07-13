@@ -45,7 +45,6 @@ router.post("/login", loginValidation, async (req: Request, res: Response) => {
 });
 
 router.get("/validate-token", verifyToken, async (req: Request, res: Response) => {
-  console.error(req);
   res.status(200).send({ userId: req.userId });
 });
 
